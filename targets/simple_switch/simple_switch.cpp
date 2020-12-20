@@ -219,7 +219,8 @@ SimpleSwitch::SimpleSwitch(bool enable_swap, port_t drop_port)
         this->transmit_fn(port_num, buffer, len);
     }),
     pre(new McSimplePreLAG()),
-    start(clock::now()),
+    // @bibek changes
+    start(std::chrono::steady_clock::duration::zero()),
     mirroring_sessions(new MirroringSessions()) {
   add_component<McSimplePreLAG>(pre);
 
